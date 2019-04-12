@@ -50,7 +50,7 @@ public class EventModel extends CoreModel{
 	@NotNull(message = "Event Ticket Information must not be null")
 	private List<TicketPricingModel> eventPricing;
 	
-	private Optional<List<ImageModel>>eventImage;;
+	private List<ImageModel>eventImage;;
 	
 	private String productType;
 	

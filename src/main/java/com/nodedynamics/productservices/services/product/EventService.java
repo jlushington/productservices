@@ -1,9 +1,10 @@
 package com.nodedynamics.productservices.services.product;
 
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Optional;
+
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,8 +27,7 @@ import reactor.core.publisher.Mono;
 public class EventService implements BaseService<EventModel>{
 	
 Logger log = LoggerFactory.getLogger(EventService.class);
-	
-	private WebSession Session;
+
 	
 	@Autowired
 	private EventRepository repo;
@@ -44,19 +44,15 @@ Logger log = LoggerFactory.getLogger(EventService.class);
 	@Override
 	public Mono<String> Store(EventModel Model) {
 		
-		Iterator<ImageModel> images=Model.getEventImage().get().iterator();
+		Iterator<ImageModel> images=Model.getEventImage().iterator();
 		
-		List<ImageModel>rtnImages= new ArrayList();
+		List<ImageModel>rtnImages= new ArrayList<ImageModel>();
 		
 		ImageManager manager =new ImageManager();
 		
 		while(images.hasNext()) {
 			ImageModel image = images.next();
-			
-			log.info("while");
-			log.info(image.getName());
-			
-			
+						
 			manager.Connect();
 			
 			ImageModel imagemodel=manager.Commit(image);
@@ -65,9 +61,6 @@ Logger log = LoggerFactory.getLogger(EventService.class);
 	
 		}
 
-		
-		
-		
 		EventModel m = EventModel.builder()
 				.eventName(Model.getEventName())
 				.eventDescription(Model.getEventDescription())
@@ -78,7 +71,7 @@ Logger log = LoggerFactory.getLogger(EventService.class);
 				.eventEndDate(Model.getEventEndDate())
 				.eventPricing(Model.getEventPricing())
 				.productType(Model.getProductType())
-				.eventImage(Optional.of(rtnImages))
+				.eventImage(rtnImages)
 				.build();
 		
 		//SAVE MODEL
@@ -114,8 +107,10 @@ Logger log = LoggerFactory.getLogger(EventService.class);
 
 	@Override
 	public Mono<String> GetAll() {
-		// TODO Auto-generated method stub
-		return null;
+		log.info("EventService->GetAll");
+		log.info("EventService->GetAll->gson.toJson(repo.findAll()): "+ gson.toJson(repo.findAll()));
+		
+		return Mono.just(gson.toJson(repo.findAll()));
 	}
 
 	@Override

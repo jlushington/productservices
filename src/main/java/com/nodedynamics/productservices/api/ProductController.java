@@ -38,6 +38,12 @@ public class ProductController {
 		return service.GetLatest();
 	}
 	
+	@GetMapping(value = "/listproducts")
+	public Mono<String> ListProducts(){	
+		return service.GetAll();
+
+	}
+	
 	
 	
 	//ADD PRODUCT
