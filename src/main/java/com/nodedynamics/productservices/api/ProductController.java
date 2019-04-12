@@ -41,10 +41,10 @@ public class ProductController {
 	
 	
 	//ADD PRODUCT
-	//@CrossOrigin(origins = "*") //TODO: NEED TO REMOVE AND INIT PROPER CORS
+	@CrossOrigin(origins = "*") //TODO: NEED TO REMOVE AND INIT PROPER CORS
 	@PostMapping(value = "/addproduct", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public Mono<String> Addproduct(@RequestBody @Valid EventModel request){
-			
+			log.info(gson.toJson(request));
 		return service.Store(request);
 	}
 	

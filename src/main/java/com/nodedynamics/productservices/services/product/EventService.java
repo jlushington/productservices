@@ -1,5 +1,10 @@
 package com.nodedynamics.productservices.services.product;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Optional;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +13,8 @@ import org.springframework.web.server.WebSession;
 
 import com.google.gson.Gson;
 import com.nodedynamics.productservices.common.Global;
+import com.nodedynamics.productservices.common.imagemanager.ImageManager;
+import com.nodedynamics.productservices.model.common.ImageModel;
 import com.nodedynamics.productservices.model.common.ResponseModel;
 import com.nodedynamics.productservices.model.product.EventModel;
 import com.nodedynamics.productservices.repo.EventRepository;
@@ -37,8 +44,45 @@ Logger log = LoggerFactory.getLogger(EventService.class);
 	@Override
 	public Mono<String> Store(EventModel Model) {
 		
+		Iterator<ImageModel> images=Model.getEventImage().get().iterator();
+		
+		List<ImageModel>rtnImages= new ArrayList();
+		
+		ImageManager manager =new ImageManager();
+		
+		while(images.hasNext()) {
+			ImageModel image = images.next();
+			
+			log.info("while");
+			log.info(image.getName());
+			
+			
+			manager.Connect();
+			
+			ImageModel imagemodel=manager.Commit(image);
+			
+			rtnImages.add(imagemodel);
+	
+		}
+
+		
+		
+		
+		EventModel m = EventModel.builder()
+				.eventName(Model.getEventName())
+				.eventDescription(Model.getEventDescription())
+				.locationID(Model.getLocationID())
+				.age(Model.getAge())
+				.eventURL(Model.getEventURL())
+				.eventStartDate(Model.getEventStartDate())
+				.eventEndDate(Model.getEventEndDate())
+				.eventPricing(Model.getEventPricing())
+				.productType(Model.getProductType())
+				.eventImage(Optional.of(rtnImages))
+				.build();
+		
 		//SAVE MODEL
-		repo.save(Model);
+		repo.save(m);
 
 		return Mono.just(gson.toJson(ResponseModel.builder()
 				.MessageTypeID(Global.MessageTypeID.SUCCESS.key)

@@ -12,16 +12,17 @@ import lombok.ToString;
 @Builder
 public class ImageModel extends CoreModel{
 	
-	private String ImageID;
-	private String ImageName;
-	private String ImageLoc;
-	private String ImageDescription;
-	private String ImageType;
-	private int LoginID;
-	private int ProductID;
-	private int UserTypeID;
-	private int VendorID;
-	private int VendorStoreID;
+	private String imageID;
+	private String imageName;
+	private String name;
+	private String type;
+	private String size;
+	private String base64;
+	private String imageLoc;
+	private String imageDescription;
+	private String imageType;
+	private int loginID;
+	private int productID;
 
 
 }

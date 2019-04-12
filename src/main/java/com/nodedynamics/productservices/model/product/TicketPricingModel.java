@@ -24,6 +24,7 @@ public class TicketPricingModel extends CoreModel{
 	private String ticketPricingCurrency;
 	private Double ticketPricingAmount;
 	private Integer ticketPricingNumber;
-	private Integer taxTicket;
+	private Integer maxTicket;
+	private String taxesID;
 	
 }

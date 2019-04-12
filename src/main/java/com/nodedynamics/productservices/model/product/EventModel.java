@@ -33,8 +33,6 @@ public class EventModel extends CoreModel{
 	@NotNull(message = "Event Description must not be null")
 	private String eventDescription;
 	
-	private Optional<List<ImageModel>> eventImages;
-	
 	@NotNull(message = "Location ID must not be null")
 	private String locationID;
 	private Optional<List<PhoneModel>> eventNumbers;
@@ -51,6 +49,8 @@ public class EventModel extends CoreModel{
 	
 	@NotNull(message = "Event Ticket Information must not be null")
 	private List<TicketPricingModel> eventPricing;
+	
+	private Optional<List<ImageModel>>eventImage;;
 	
 	private String productType;
 	

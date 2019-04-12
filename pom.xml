@@ -78,6 +78,11 @@
 	    	<artifactId>hibernate-validator</artifactId>
 	    	<version>5.3.4.Final</version>
 		</dependency>
+		<dependency>
+	  		<groupId>com.google.cloud</groupId>
+	  		<artifactId>google-cloud-storage</artifactId>
+	  		<version>1.66.0</version>
+		</dependency>
 	</dependencies>
 
 	<build>
