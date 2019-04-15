@@ -33,11 +33,13 @@ public class ProductController {
 	EventService service;
 	
 	//LIST LATEST PRODUCT
+	@CrossOrigin(origins = "*") //TODO: NEED TO REMOVE AND INIT PROPER CORS
 	@GetMapping(value = "/listlatestproducts")
-	public Mono<String> ListLatestProducts(@RequestBody String request){		
+	public Mono<String> ListLatestProducts(){		
 		return service.GetLatest();
 	}
 	
+	@CrossOrigin(origins = "*") //TODO: NEED TO REMOVE AND INIT PROPER CORS
 	@GetMapping(value = "/listproducts")
 	public Mono<String> ListProducts(){	
 		return service.GetAll();
@@ -56,7 +58,7 @@ public class ProductController {
 	
 	
 	//GET PRODUCT BY ID
-	//@CrossOrigin(origins = "*") //TODO: NEED TO REMOVE AND INIT PROPER CORS
+	@CrossOrigin(origins = "*") //TODO: NEED TO REMOVE AND INIT PROPER CORS
 	@PostMapping(value = "/getproduct", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public Mono<String> GetProduct(@RequestBody String request){			
 		return service.Get(gson.fromJson(request, EventModel.class));
