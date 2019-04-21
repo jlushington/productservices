@@ -10,8 +10,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.WebSession;
-
 import com.google.gson.Gson;
 import com.nodedynamics.productservices.common.Global;
 import com.nodedynamics.productservices.common.imagemanager.ImageManager;
@@ -35,11 +33,6 @@ Logger log = LoggerFactory.getLogger(EventService.class);
 	@Autowired
 	Gson gson = new Gson();
 
-	@Override
-	public void Init(WebSession session) {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
 	public Mono<String> Store(EventModel Model) {

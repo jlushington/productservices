@@ -39,9 +39,17 @@ public class ProductController {
 		return service.GetLatest();
 	}
 	
+
 	@CrossOrigin(origins = "*") //TODO: NEED TO REMOVE AND INIT PROPER CORS
 	@GetMapping(value = "/listproducts")
 	public Mono<String> ListProducts(){	
+		return service.GetAll();
+
+	}
+	
+	@CrossOrigin(origins = "*") //TODO: NEED TO REMOVE AND INIT PROPER CORS
+	@GetMapping(value = "/homelastestproducts")
+	public Mono<String> HomeLatestProducts(){	
 		return service.GetAll();
 
 	}

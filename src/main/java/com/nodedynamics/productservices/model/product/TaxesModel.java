@@ -2,6 +2,7 @@ package com.nodedynamics.productservices.model.product;
 
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.nodedynamics.productservices.model.CoreModel;
 
@@ -14,6 +15,7 @@ import lombok.ToString;
 @Getter
 @ToString
 @Builder
+@Document(collection="Taxes")
 public class TaxesModel extends CoreModel{
 	
 	@Id

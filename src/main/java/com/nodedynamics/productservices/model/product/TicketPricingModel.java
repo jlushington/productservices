@@ -1,11 +1,7 @@
 package com.nodedynamics.productservices.model.product;
 
-
-
 import org.springframework.data.annotation.Id;
-
 import com.nodedynamics.productservices.model.CoreModel;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
