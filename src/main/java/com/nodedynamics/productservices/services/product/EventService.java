@@ -24,7 +24,7 @@ import reactor.core.publisher.Mono;
 @Service
 public class EventService implements BaseService<EventModel>{
 	
-Logger log = LoggerFactory.getLogger(EventService.class);
+	Logger log = LoggerFactory.getLogger(EventService.class);
 
 	
 	@Autowired
@@ -117,6 +117,24 @@ Logger log = LoggerFactory.getLogger(EventService.class);
 		
 		return Mono.just(gson.toJson(repo.findTopByOrderByEventStartDate()));
 		
+	}
+	
+	public Mono<String>Get3Latest(){
+		return Mono.just(gson.toJson(repo.findTop3ByOrderByEventStartDateDesc()));
+	}
+	
+	public Mono<String> Get3LatestImages(){
+		List<ImageModel> LImageModel= new ArrayList<ImageModel>();
+		
+		Iterator<EventModel> rtnModelData=repo.findTop3ByOrderByEventStartDateDesc().iterator();
+		
+		while(rtnModelData.hasNext()) {
+			EventModel Model= rtnModelData.next();
+			log.info(Model.getEventImage().get(0).getImageName());
+			LImageModel.add(Model.getEventImage().get(0));
+		}
+		
+		return Mono.just(gson.toJson(LImageModel));
 	}
 
 }

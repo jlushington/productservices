@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.server.WebSession;
 import com.google.gson.Gson;
 import com.nodedynamics.productservices.model.product.EventModel;
 import com.nodedynamics.productservices.services.product.EventService;
@@ -25,7 +24,6 @@ public class ProductController {
 	
 	Logger log = LoggerFactory.getLogger(ProductController.class);
 	
-
 	@Autowired
 	Gson gson;
 	
@@ -48,10 +46,15 @@ public class ProductController {
 	}
 	
 	@CrossOrigin(origins = "*") //TODO: NEED TO REMOVE AND INIT PROPER CORS
-	@GetMapping(value = "/homelastestproducts")
-	public Mono<String> HomeLatestProducts(){	
-		return service.GetAll();
-
+	@GetMapping(value = "/list3latest")
+	public Mono<String> List3Latest(){	
+		return service.Get3Latest();
+	}
+	
+	@CrossOrigin(origins = "*") //TODO: NEED TO REMOVE AND INIT PROPER CORS
+	@GetMapping(value = "/list3latestimages")
+	public Mono<String> List3LatestImages(){	
+		return service.Get3LatestImages();
 	}
 	
 	

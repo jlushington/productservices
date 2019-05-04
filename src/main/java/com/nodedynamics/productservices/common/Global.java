@@ -34,6 +34,18 @@ public class Global {
 		}
 	}
 	
+	public static enum ReviewType
+	{
+		EVENT("EVENT"),
+		VENUE("VENUE");
+		public final String key;
+		private ReviewType(final String key)
+		{
+			this.key=key;
+		}
+	}
+	
+	
 	public static enum MessageType
 	{
 		SUCCESS("Success"),

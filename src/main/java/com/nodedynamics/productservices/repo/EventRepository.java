@@ -12,5 +12,7 @@ public interface EventRepository extends MongoRepository<EventModel, String>{
 	
 	//@Query("db.col.find().sort({\"datetime\": -1}).limit(1)")
 	public List<EventModel>findTopByOrderByEventStartDate();
+	
+	public List<EventModel>findTop3ByOrderByEventStartDateDesc();
 
 }
